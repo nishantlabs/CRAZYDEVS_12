@@ -3,41 +3,94 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>StadiumGuide | Custom Layout</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>StadiumExplorer | Wankhede Stadium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <!-- Base Layer: Map -->
-    <div id="map-layer"></div>
+    <div id="layout-wrapper">
+      <!-- Left Sidebar: Explore & AI Assistant -->
+      <aside id="sidebar">
+        <header class="sidebar-header">
+          <div class="logo">
+            <span class="logo-icon">🏟️</span>
+            <span class="logo-text">StadiumHub</span>
+          </div>
+          <div class="user-profile-mini">
+            <img src="https://i.pravatar.cc/100?img=11" alt="Avatar" />
+            <div class="user-info">
+              <span class="u-name">Gaurav</span>
+              <span class="u-tier">VIP Ticket</span>
+            </div>
+          </div>
+        </header>
 
-    <!-- Live Scoreboard Widget -->
-    <div id="live-scoreboard" class="live-scoreboard">
-      <div class="score-header">
-        <span class="live-dot"></span> LIVE: IND vs AUS
-      </div>
-      <div class="score-main">
-        <div class="team-score">IND <strong>145/2</strong> <span class="overs">(14.2)</span></div>
-      </div>
-    </div>
+        <section class="explore-panel">
+          <h1>Explore the Arena - Wankhede Stadium</h1>
+          <p class="subtitle">Find your way around Wankhede Stadium with our AI Assistant.</p>
 
-    <!-- Bottom Controls Container (Match sketch) -->
-    <div class="bottom-controls">
-      <div class="search-box">
-        <input type="text" placeholder="Search..." id="search-input" />
-        <button class="mic-button" aria-label="Voice Search" id="voice-search-btn">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-            <line x1="12" y1="19" x2="12" y2="22"></line>
-          </svg>
-        </button>
-      </div>
-      <button class="primary-btn" id="start-nav-btn">
-        <span id="btn-text">Direct To...</span>
-      </button>
+          <div class="search-section">
+            <div class="gemini-input-wrapper">
+              <span class="gemini-spark">✨</span>
+              <input type="text" placeholder="Ask Gemini..." id="gemini-search" />
+              <button class="ask-btn">Ask Gemini</button>
+            </div>
+            <p class="search-hint">e.g., 'Nearest washroom and then Vada Pav stall?'</p>
+          </div>
+
+          <div class="filter-grid">
+            <button class="filter-item">🍔 Food & Drinks</button>
+            <button class="filter-item">🚻 Restrooms</button>
+            <button class="filter-item">↗ Exits</button>
+            <button class="filter-item">🎁 Souvenirs</button>
+            <button class="filter-item">➕ Medical</button>
+            <button class="filter-item">💧 Water</button>
+          </div>
+
+          <div class="ai-chat-box">
+            <div class="ai-header">
+              <span class="spark-icon">✨</span>
+              <span>AI ASSISTANT</span>
+            </div>
+            <div class="ai-message" id="ai-response">
+              Ok, from Stand B, Row L, your route to Gate 7 is 250m. Follow the blue path and turn left at Aisle B. Safe travels!
+            </div>
+          </div>
+        </section>
+      </aside>
+
+      <!-- Main Map Area -->
+      <main id="map-container">
+        <!-- Top Status Bar -->
+        <div class="top-status-bar">
+          <div class="match-info">
+            🇮🇳 INDIA vs. AUSTRALIA | <span class="status-text">Match starts in 1hr. Find your seat!</span>
+          </div>
+          <div class="live-score">
+            India: 0/0 (0.0 overs) | Australia (Yet to bat)
+          </div>
+        </div>
+
+        <div id="map-layer"></div>
+
+        <!-- Floating UI Overlays -->
+        <div class="level-selector">
+          <button class="lvl-btn active">Level 1</button>
+          <button class="lvl-btn">Level 2</button>
+          <button class="lvl-btn">Level 3</button>
+        </div>
+
+        <div class="bottom-map-controls">
+          <button class="map-action-btn primary" id="start-nav-btn">
+            <span class="icon">↗</span> Route
+          </button>
+          <button class="map-action-btn" id="recenter-btn">
+            <span class="icon">🎯</span> Recenter
+          </button>
+        </div>
+      </main>
     </div>
 
     <script src="./main.js" defer></script>
