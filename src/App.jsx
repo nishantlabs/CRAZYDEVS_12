@@ -6,6 +6,7 @@ import StadiumMap from './components/StadiumMap.jsx';
 import SearchFooter from './components/SearchFooter.jsx';
 import BottomDrawer from './components/BottomDrawer.jsx';
 import NotificationToast from './components/NotificationToast.jsx';
+import LoginPage from './components/LoginPage.jsx';
 
 const LANGUAGES = { EN: 'en', HI: 'hi', MR: 'mr' };
 
@@ -66,6 +67,7 @@ const POI_RESPONSES = {
 const QUICK_QUERIES = ['Vada Pav Stall #2', 'Gate 7', 'North Stand', 'Washroom', 'Merch Shop'];
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [language, setLanguage] = useState(LANGUAGES.EN);
   const [query, setQuery] = useState('');
   const [isThinking, setIsThinking] = useState(false);
@@ -122,8 +124,30 @@ export default function App() {
 
   useEffect(() => () => clearInterval(navIntervalRef.current), []);
 
+  if (!isLoggedIn) {
+    return (
+      <AnimatePresence mode="wait">
+        <motion.div
+          key="login"
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <LoginPage onLogin={() => setIsLoggedIn(true)} />
+        </motion.div>
+      </AnimatePresence>
+    );
+  }
+
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-[#0f172a]" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <motion.div
+      key="app"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="relative w-screen h-screen overflow-hidden bg-[#0f172a]"
+      style={{ fontFamily: 'Inter, sans-serif' }}
+    >
       {/* Base Layer: Stadium Map */}
       <StadiumMap isNavigating={isNavigating} navProgress={navProgress} destination={drawerContent?.title} />
 
@@ -167,6 +191,6 @@ export default function App() {
         onStartNav={handleStartNav}
         t={t}
       />
-    </div>
+    </motion.div>
   );
 }
