@@ -3,96 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>StadiumExplorer | Wankhede Stadium</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-    <link rel="stylesheet" href="./style.css" />
+    <title>StadiumGuide | Your Smart Stadium Companion</title>
+    <meta name="description" content="Navigate stadiums with ease. Find gates, food stalls, and your seat with AI-powered guidance." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <div id="layout-wrapper">
-      <!-- Left Sidebar: Explore & AI Assistant -->
-      <aside id="sidebar">
-        <header class="sidebar-header">
-          <div class="logo">
-            <span class="logo-icon">🏟️</span>
-            <span class="logo-text">StadiumHub</span>
-          </div>
-          <div class="user-profile-mini">
-            <img src="https://i.pravatar.cc/100?img=11" alt="Avatar" />
-            <div class="user-info">
-              <span class="u-name">Gaurav</span>
-              <span class="u-tier">VIP Ticket</span>
-            </div>
-          </div>
-        </header>
-
-        <section class="explore-panel">
-          <h1>Explore the Arena - Wankhede Stadium</h1>
-          <p class="subtitle">Find your way around Wankhede Stadium with our AI Assistant.</p>
-
-          <div class="search-section">
-            <div class="gemini-input-wrapper">
-              <span class="gemini-spark">✨</span>
-              <input type="text" placeholder="Ask Gemini..." id="gemini-search" />
-              <button class="ask-btn">Ask Gemini</button>
-            </div>
-            <p class="search-hint">e.g., 'Nearest washroom and then Vada Pav stall?'</p>
-          </div>
-
-          <div class="filter-grid">
-            <button class="filter-item">🍔 Food & Drinks</button>
-            <button class="filter-item">🚻 Restrooms</button>
-            <button class="filter-item">↗ Exits</button>
-            <button class="filter-item">🎁 Souvenirs</button>
-            <button class="filter-item">➕ Medical</button>
-            <button class="filter-item">💧 Water</button>
-          </div>
-
-          <div class="ai-chat-box">
-            <div class="ai-header">
-              <span class="spark-icon">✨</span>
-              <span>AI ASSISTANT</span>
-            </div>
-            <div class="ai-message" id="ai-response">
-              Ok, from Stand B, Row L, your route to Gate 7 is 250m. Follow the blue path and turn left at Aisle B. Safe travels!
-            </div>
-          </div>
-        </section>
-      </aside>
-
-      <!-- Main Map Area -->
-      <main id="map-container">
-        <!-- Top Status Bar -->
-        <div class="top-status-bar">
-          <div class="match-info">
-            🇮🇳 INDIA vs. AUSTRALIA | <span class="status-text">Match starts in 1hr. Find your seat!</span>
-          </div>
-          <div class="live-score">
-            India: 0/0 (0.0 overs) | Australia (Yet to bat)
-          </div>
-        </div>
-
-        <div id="map-layer"></div>
-
-        <!-- Floating UI Overlays -->
-        <div class="level-selector">
-          <button class="lvl-btn active">Level 1</button>
-          <button class="lvl-btn">Level 2</button>
-          <button class="lvl-btn">Level 3</button>
-        </div>
-
-        <div class="bottom-map-controls">
-          <button class="map-action-btn primary" id="start-nav-btn">
-            <span class="icon">↗</span> Route
-          </button>
-          <button class="map-action-btn" id="recenter-btn">
-            <span class="icon">🎯</span> Recenter
-          </button>
-        </div>
-      </main>
-    </div>
-
-    <script src="./main.js" defer></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
