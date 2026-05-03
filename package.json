@@ -5,10 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "node functions/server.js",
+    "dev:full": "concurrently --names \"BACKEND,FRONTEND\" --prefix-colors \"cyan,magenta\" \"node functions/server.js\" \"vite\"",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
     "framer-motion": "^12.9.4",
     "lucide-react": "^0.511.0",
     "react": "^19.1.0",
@@ -17,6 +21,7 @@
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.5",
     "@vitejs/plugin-react": "^4.7.0",
+    "concurrently": "^9.1.2",
     "tailwindcss": "^4.1.5",
     "vite": "^5.0.0"
   }

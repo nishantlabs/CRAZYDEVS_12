@@ -10,9 +10,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:5001/sih-prototype-19568/us-central1/api',
+        target: 'http://localhost:5001',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        // Keep /api prefix — server.js routes are defined as /api/...
       }
     }
   }
