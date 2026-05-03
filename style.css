@@ -1,0 +1,140 @@
+/* Variables */
+:root {
+  --navy: #1e1b4b; /* Deep Indigo */
+  --blue: #3b82f6;
+  --green: #10b981;
+  --pink: #ec4899;
+  --yellow: #f59e0b;
+  --white: #ffffff;
+  --gray: #e2e8f0;
+  --font-main: 'Inter', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: var(--font-main);
+  background-color: var(--navy);
+  color: var(--white);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+#map-layer {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+  background-color: var(--navy); /* Custom canvas color */
+}
+
+.leaflet-control-container { display: none; }
+
+/* Custom POI */
+.custom-poi-marker {
+  background-color: transparent;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s;
+}
+
+/* User marker */
+.custom-user-marker {
+  background-color: var(--blue);
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--blue);
+}
+
+/* Bottom Controls */
+.bottom-controls {
+  position: absolute;
+  bottom: 0; left: 0; width: 100%;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  z-index: 10;
+  padding-bottom: env(safe-area-inset-bottom, 1rem);
+  background: linear-gradient(180deg, transparent, rgba(30, 27, 75, 0.9));
+}
+
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(236, 72, 153, 0.2));
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 0 0.75rem;
+}
+
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--white);
+  padding: 0.75rem 0;
+  outline: none;
+  font-family: var(--font-main);
+}
+
+.search-box input::placeholder {
+  color: var(--gray);
+}
+
+.mic-button {
+  background: transparent;
+  border: none;
+  color: var(--blue);
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.primary-btn {
+  flex: 1;
+  background: linear-gradient(90deg, var(--blue), var(--pink));
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-family: var(--font-main);
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+  padding: 0.75rem 1rem;
+  transition: transform 0.1s, opacity 0.2s;
+}
+
+.primary-btn:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+.arrived-btn {
+  background: var(--green) !important;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4) !important;
+}
+
+/* Scoreboard */
+.live-scoreboard {
+  position: absolute; top: 2rem; left: 1rem; right: 1rem;
+  background: linear-gradient(135deg, rgba(30, 27, 75, 0.85), rgba(49, 46, 129, 0.85));
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(236, 72, 153, 0.4);
+  border-radius: 12px; padding: 0.75rem 1rem;
+  z-index: 10; display: flex; flex-direction: column; gap: 0.25rem;
+  box-shadow: 0 4px 20px rgba(236, 72, 153, 0.2);
+}
+.score-header { font-size: 0.75rem; color: var(--green); font-weight: 700; text-transform: uppercase; display: flex; align-items: center; gap: 0.4rem; }
+.live-dot { width: 6px; height: 6px; background-color: var(--green); border-radius: 50%; animation: blink 1s infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.team-score { font-size: 1.1rem; }
+.team-score strong { font-weight: 700; font-size: 1.3rem; }
+.overs { font-size: 0.9rem; color: var(--gray); }
+
+/* Dotted path animation */
+path.leaflet-interactive.neon-line {
+  stroke: var(--white);
+  stroke-width: 4;
+  stroke-dasharray: 10, 15;
+  filter: drop-shadow(0 0 6px var(--white));
+  animation: dash 2s linear infinite;
+}
+@keyframes dash { to { stroke-dashoffset: -50; } }
