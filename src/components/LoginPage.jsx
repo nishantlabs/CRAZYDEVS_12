@@ -9,15 +9,29 @@ export default function LoginPage({ onLogin }) {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setIsLoading(true);
 
-    if (username === 'nishant' && password === '1234') {
-      setIsLoading(true);
-      setTimeout(() => onLogin(), 1200);
-    } else {
-      setError('Invalid username or password. Please try again.');
+    try {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        // In a real app, store data.token in localStorage here
+        setTimeout(() => onLogin(), 500);
+      } else {
+        setError(data.error || 'Invalid username or password. Please try again.');
+      }
+    } catch (err) {
+      setError('Network error. Please try again later.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
